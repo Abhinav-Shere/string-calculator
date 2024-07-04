@@ -8,7 +8,15 @@ class StringCalculator
     # Return number itself if the input string is single value
     return numbers.to_i if numbers.length.eql?(1)
 
-    # Return sum of numbers seperated with commas
-    numbers.split('').map(&:to_i).sum
+    # Remove all the delimeters from input string
+    number_arr = numbers.scan(/-?\d+/).map(&:to_i)
+    
+    # Raise error when number is negative
+     if number_arr.any? { |i| i < 0 }
+      raise 'negative not allowed'
+    end
+
+    # Return sum of numbers
+    number_arr.sum
 	end
 end
