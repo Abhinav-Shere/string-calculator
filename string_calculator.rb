@@ -6,6 +6,9 @@ class StringCalculator
     return 0 if numbers.empty?
 
     # Return number itself if the input string is single value
-    numbers.to_i
+    return numbers.to_i if numbers.length.eql?(1)
+
+    # Return sum of numbers seperated with commas
+    numbers.split('').map(&:to_i).sum
 	end
 end
