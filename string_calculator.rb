@@ -11,10 +11,11 @@ class StringCalculator
     # Remove all the delimeters from input string
     number_arr = numbers.scan(/-?\d+/).map(&:to_i)
     
-    # Raise error when number is negative
-     if number_arr.any? { |i| i < 0 }
-      raise 'negative not allowed'
-    end
+    # Find negative numbers
+    negatives = number_arr.select { |i| i < 0 }
+
+    # Raise an exception if negative numbers are found
+    raise "negative not allowed: #{negatives.join(', ')}" if negatives.any?
 
     # Return sum of numbers
     number_arr.sum
